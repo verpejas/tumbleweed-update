@@ -1,0 +1,43 @@
+#!/bin/bash
+
+sudo zypper refresh && sudo zypper dup && sudo flatpak update
+
+while true; do
+    read -p "Do you want to clean the GPU cache? (y/n): " answer
+
+    case $answer in
+        [Yy]* )
+            echo "Cleaning GPU cache..."
+            sudo find ~/ -type d -name GPUCache -exec rm -rf {} +
+            break
+            ;;
+        [Nn]* )
+            echo "Exiting without cleaning the GPU cache."
+            break
+            ;;
+        * )
+            echo "Invalid response. Please answer y or n."
+            continue
+            ;;
+    esac
+done
+
+while true; do
+    read -p "Do you want to reboot now? (y/n): " reboot_answer
+
+    case $reboot_answer in
+        [Yy]* )
+            echo "Rebooting now..."
+            sudo reboot
+            break
+            ;;
+        [Nn]* )
+            echo "Exiting without rebooting."
+            break
+            ;;
+        * )
+            echo "Invalid response. Please answer y or n."
+            continue
+            ;;
+    esac
+done
