@@ -1,11 +1,13 @@
 # tumbleweed-update
 An automated script to perform update tasks on Opensuse Tumbleweed using zypper and flatpak, allowing for GPUcache cleanup
 
-I made this thing some time ago, i use it every couple days to update my machine. The script refreshes zypper, performs "dup" update as well as updates all the flatpaks. At the end it asks if you want to clean the gpucache (i had many issues with google chrome after TW updates, using this after update before rebooting resolved those issues). At the end it asks for a reboot.
+I made this thing some time ago, i use it every couple days to update my machine. The script refreshes zypper, performs "dup" update as well as updates all the flatpaks. At the end it asks if you want to clean the gpucache ( it is important, as I had many issues with Google Chrome not displaying graphics correctly after TW updates,.Using my script after updates, before rebooting, resolved those issues completely). At the end it asks if you want to reboot.
 
-The script is just 3 update commands and two while loops - one for choice of gpucache cleaning and one for reboot choice. I have it in my ~/bin folder named "myupdate", so every time i execute "myupdate" command in the terminal, it takes care of everything for me.
+The script is just 3 update commands and two while loops - one for choice of gpucache cleaning and one for reboot choice. It also has a command that finds any GPUcache folders in ~/ and deletes them, so they can regenerate after reboot properly. I have it in my ~/bin folder named "myupdate", so every time i execute "myupdate" command in the terminal, it takes care of everything.
 
-I did not implement non-interactive zypper updates, just as a safety measure, so if you can spot a bad update or bad vendor you can cancel or abort it and interact with zypper. Same goes for flatpaks
+I did NOT implement non-interactive zypper or flatpak updates, just as a safety measure, so in case you spot a bad update or bad vendor, you can cancel or abort it and interact with zypper or flatpak.
+
+If you want the non-interactive setup, simply change "sudo zypper refresh && sudo zypper dup && sudo flatpak update" to "sudo zypper refresh && sudo zypper --non-interactive dup && sudo flatpak update --noninteractive"
 
 Here are the contents of the bash script fiile:
 ```bash
