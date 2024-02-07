@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo zypper refresh && sudo zypper dup && sudo flatpak update
+sudo flatpak update && sudo zypper refresh && sudo zypper dup -l 
 
 while true; do
     read -p "Do you want to clean the GPU cache? (y/n): " answer
