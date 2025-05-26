@@ -12,7 +12,7 @@ If you want the non-interactive setup, simply change "sudo zypper refresh && sud
 Here are the contents of the bash script fiile:
 ```bash
 #!/bin/bash
-
+printf "This script will: \n - refresh Zypper package cache, \n - perform a distribution upgrade through Zypper, \n - install Flatpak updates, \n - clean GPUcache if you wish. \n\nProvide your sudo password to continue...\n"
 sudo zypper refresh && sudo zypper dup && sudo flatpak update
 
 while true; do
